@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: form-service
+  server:
+    port: 8081
+
+  config:
+    import: optional:configserver:http://localhost:8888
+
+  # MongoDB Configuration
+  data:
+    mongodb:
+      uri: mongodb://admin:admin123@localhost:27017/dynamic_form_db?authSource=admin
+      database: dynamic_form_db
+      auto-index-creation: true
+
+  # Disable Eureka client
+  cloud:
+    discovery:
+      enabled: true
+
+# Eureka Configuration - disabled
+eureka:
+  client:
+    enabled: true

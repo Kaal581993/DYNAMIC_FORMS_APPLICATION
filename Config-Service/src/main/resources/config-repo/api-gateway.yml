@@ -1,0 +1,88 @@
+server:
+  port: 8080
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka
+
+spring:
+  cloud:
+    gateway:
+      routes:
+        # Auth Server - OAuth2 & Authentication
+        - id: auth-server
+          uri: lb://AUTH-SERVER
+          predicates:
+            - Path=/oauth2/**,/login/**
+          filters:
+            - StripPrefix=0
+
+        # User Service
+        - id: user-service
+          uri: lb://USER-SERVICE
+          predicates:
+            - Path=/api/users/**,/users/**
+          filters:
+            - StripPrefix=1
+
+        # Form Service
+        - id: form-service
+          uri: lb://FORM-SERVICE
+          predicates:
+            - Path=/api/forms/**,/forms/**
+          filters:
+            - StripPrefix=1
+
+        # Submission Service
+        - id: submission-service
+          uri: lb://SUBMISSION-SERVICE
+          predicates:
+            - Path=/api/submissions/**,/submissions/**
+          filters:
+            - StripPrefix=1
+
+        # Role Service
+        - id: role-service
+          uri: lb://ROLE-SERVICE
+          predicates:
+            - Path=/api/roles/**,/roles/**
+          filters:
+            - StripPrefix=1
+
+      # Global CORS configuration
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins: "*"
+            allowedMethods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - OPTIONS
+            allowedHeaders: "*"
+
+  # JWT Configuration for Gateway
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: http://localhost:8085
+          jwk-set-uri: http://localhost:8085/.well-known/jwks.json
+
+# Management endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics
+  endpoint:
+    health:
+      show-details: always
+
+# Logging
+logging:
+  level:
+    org.springframework.cloud.gateway: DEBUG
+    com.netflix: INFO
