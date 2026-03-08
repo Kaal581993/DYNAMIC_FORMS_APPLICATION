@@ -19,3 +19,16 @@ spring:
       ddl-auto: update
     show-sql: true
 
+springdoc:
+  swagger-ui:
+    servers:
+      - url: http://localhost:8762
+        description: Role Service Swagger
+    path: /swagger-ui.html
+    use-root-path: false
+    tagsSorter: alpha
+    operationsSorter: alpha
+    docExpansion: none
+  api-docs:
+    path: /v3/api-docs
+

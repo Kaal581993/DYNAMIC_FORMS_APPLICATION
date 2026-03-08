@@ -11,7 +11,7 @@
         <module name="Auth-Server" />
         <module name="discovery-server-eureka" />
       </profile>
-      <profile name="Annotation profile for Form-Service" enabled="true">
+      <profile name="Annotation profile for User-Service" enabled="true">
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
@@ -22,10 +22,13 @@
         <module name="Role-Service" />
         <module name="Config-Service" />
         <module name="Submission-Service" />
-        <module name="Shared-library" />
         <module name="User-Service" />
+        <module name="Shared-library" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="api-documentation" target="21" />
+    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
@@ -37,6 +40,7 @@
       <module name="Shared-library" options="-parameters" />
       <module name="Submission-Service" options="-parameters" />
       <module name="User-Service" options="-parameters" />
+      <module name="api-documentation" options="-parameters" />
       <module name="discovery-server-eureka" options="-parameters" />
     </option>
   </component>

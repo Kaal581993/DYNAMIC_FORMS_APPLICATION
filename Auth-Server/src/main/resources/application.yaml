@@ -3,3 +3,15 @@ spring:
     name: auth-server
   config:
     import: optional:configserver:http://localhost:8888
+
+springdoc:
+  swagger-ui:
+    servers:
+      - url: http://localhost:8762
+        description: Auth Server Swagger
+    path: /swagger-ui.html
+    use-root-path: false
+    tagsSorter: alpha
+    operationsSorter: alpha
+    docExpansion: none
+  api-docs:

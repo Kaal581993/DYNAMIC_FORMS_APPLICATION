@@ -31,3 +31,17 @@ management:
     web:
       exposure:
         include: health,refresh
+
+springdoc:
+  swagger-ui:
+    servers:
+      - url: http://localhost:8762
+        description: Config Service Swagger
+    path: /swagger-ui.html
+    use-root-path: false
+    tagsSorter: alpha
+    operationsSorter: alpha
+    docExpansion: none
+  api-docs:
+    path: /v3/api-docs
+
