@@ -9,6 +9,7 @@ import org.springframework.security.oauth2.server.authorization.client.InMemoryR
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClient;
 import org.springframework.security.oauth2.server.authorization.client.RegisteredClientRepository;
 
+import java.util.List;
 import java.util.UUID;
 
 @Configuration
@@ -26,6 +27,6 @@ public class AuthorizationServerConfig {
                         .scope("profile")
                         .build();
 
-        return new InMemoryRegisteredClientRepository();
+        return new InMemoryRegisteredClientRepository(List.of(client));
     }
 }
