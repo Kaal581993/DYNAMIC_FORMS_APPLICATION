@@ -17,6 +17,11 @@ public class GatewaySecurityConfig {
                 .authorizeExchange(authorize -> authorize
                         .pathMatchers("/auth/**").permitAll()
                         .pathMatchers("/api/**").permitAll()
+                        .pathMatchers("/swagger-ui/**").permitAll()
+                        .pathMatchers("/swagger-ui.html").permitAll()
+                        .pathMatchers("/v3/api-docs/**").permitAll()
+                        .pathMatchers("/swagger-resources/**").permitAll()
+                        .pathMatchers("/webjars/**").permitAll()
                         .anyExchange().authenticated()
                 )
                 .oauth2ResourceServer(oauth2 -> oauth2.jwt(jwt -> {}))

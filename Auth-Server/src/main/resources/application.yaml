@@ -114,9 +114,11 @@ springdoc:
   swagger-ui:
     servers:
       - url: http://localhost:8762
-        description: Auth Server Swagger
+        description: API Gateway (Port 8762)
+      - url: http://localhost:8085
+        description: Auth Server
     path: /swagger-ui.html
-    use-root-path: false
+    use-root-path: true
     tagsSorter: alpha
     operationsSorter: alpha
     docExpansion: none

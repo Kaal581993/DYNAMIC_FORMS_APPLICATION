@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8762
 
 spring:
   application:
@@ -51,6 +51,42 @@ spring:
           filters:
             - StripPrefix=1
 
+        # Swagger Docs Routes - Forward to each service
+        - id: user-service-docs
+          uri: http://localhost:8082
+          predicates:
+            - Path=/user-service-docs/**
+          filters:
+            - StripPrefix=1
+
+        - id: form-service-docs
+          uri: http://localhost:8081
+          predicates:
+            - Path=/form-service-docs/**
+          filters:
+            - StripPrefix=1
+
+        - id: role-service-docs
+          uri: http://localhost:8083
+          predicates:
+            - Path=/role-service-docs/**
+          filters:
+            - StripPrefix=1
+
+        - id: auth-server-docs
+          uri: http://localhost:8085
+          predicates:
+            - Path=/auth-server-docs/**
+          filters:
+            - StripPrefix=1
+
+        - id: submission-service-docs
+          uri: http://localhost:8086
+          predicates:
+            - Path=/submission-service-docs/**
+          filters:
+            - StripPrefix=1
+
       # Global CORS configuration
       globalcors:
         corsConfigurations:
@@ -94,14 +130,28 @@ springdoc:
   swagger-ui:
     servers:
       - url: http://localhost:8762
-        description: API Gateway Swagger
+        description: API Gateway (Port 8762)
+      - url: http://localhost:8081
+        description: Form Service
+      - url: http://localhost:8082
+        description: User Service
+      - url: http://localhost:8083
+        description: Role Service
+      - url: http://localhost:8085
+        description: Auth Server
+      - url: http://localhost:8086
+        description: Submission Service
     path: /swagger-ui.html
-    use-root-path: false
+    use-root-path: true
     tagsSorter: alpha
     operationsSorter: alpha
     docExpansion: none
   api-docs:
     path: /v3/api-docs
+  group-configs:
+    - group: 'api-gateway'
+      paths-to-match: '/**'
+      packages-to-scan: com.form_builder.API_Gateway
 
 
 

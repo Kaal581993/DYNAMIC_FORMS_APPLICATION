@@ -28,9 +28,11 @@ springdoc:
   swagger-ui:
     servers:
       - url: http://localhost:8762
-        description: Form Service Swagger
+        description: API Gateway (Port 8762)
+      - url: http://localhost:8081
+        description: Form Service
     path: /swagger-ui.html
-    use-root-path: false
+    use-root-path: true
     tagsSorter: alpha
     operationsSorter: alpha
     docExpansion: none
