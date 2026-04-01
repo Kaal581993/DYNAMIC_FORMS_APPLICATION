@@ -19,6 +19,10 @@ spring:
       ddl-auto: update
     show-sql: true
 
+# JWT Configuration
+jwt:
+  secret: mySecretKeyForJwtTokenGeneration12345678901234567890
+
 springdoc:
   swagger-ui:
     servers:

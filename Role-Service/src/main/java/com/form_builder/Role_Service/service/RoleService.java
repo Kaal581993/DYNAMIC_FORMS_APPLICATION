@@ -29,7 +29,9 @@ public class RoleService {
 
     public  Role createRole(@Valid CreateRoleRequest request) {
 
-
+        if (roleRepository.existsByName(request.getName())) {
+            throw new IllegalArgumentException("Role with name '" + request.getName() + "' already exists");
+        }
 
         Role role = Role.builder()
                 .name(request.getName())
