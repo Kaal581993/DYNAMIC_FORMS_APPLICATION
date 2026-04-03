@@ -15,10 +15,10 @@ public class SubmissionValidator {
             FormDTO form, Map<String, Object> submissionData
     ){
 
-        Set<List<FieldDTO>> validFields = form.getFields()
-                                    .stream()
-                                    .map(FieldDTO::getFields)
-                                    .collect(Collectors.toSet());
+        Set<String> validFields = form.getFields()
+                .stream()
+                .map(FieldDTO::getId)
+                .collect(Collectors.toSet());
 
         for (String field : submissionData.keySet()) {
 

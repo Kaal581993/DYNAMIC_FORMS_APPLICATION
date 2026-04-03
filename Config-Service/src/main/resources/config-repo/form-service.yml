@@ -20,7 +20,8 @@ eureka:
     registry-fetch-interval-seconds: 10
     instance-info-replication-interval-seconds: 10
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
+    hostname: localhost
     instance-id: ${spring.application.name}:${server.port}
     lease-renewal-interval-in-seconds: 10
 
@@ -44,6 +45,10 @@ management:
   endpoint:
     health:
       show-details: always
+
+# JWT Configuration
+jwt:
+  secret: mySecretKeyForJwtTokenGeneration12345678901234567890
 
 # Logging
 logging:

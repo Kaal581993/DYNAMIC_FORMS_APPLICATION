@@ -26,6 +26,8 @@ public class Submission {
     private String formId;
 
     private String submittedBy;
+    private String submittedByEmail;
+    private String recipientEmail;
 
     private LocalDateTime submittedAt;
 

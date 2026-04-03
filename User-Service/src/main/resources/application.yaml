@@ -33,7 +33,7 @@ jwt:
 springdoc:
   swagger-ui:
     servers:
-      - url: http://localhost:8762
+      - url: http://loccalhost:8762
         description: API Gateway (Port 8762)
       - url: http://localhost:8082
         description: User Service

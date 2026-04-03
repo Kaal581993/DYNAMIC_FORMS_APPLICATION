@@ -10,6 +10,8 @@ import com.form_builder.User_Service.security.JwtTokenProvider;
 import com.form_builder.User_Service.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -67,6 +69,7 @@ public class UserController {
     }
 
     @PostMapping("/{userId}/roles")
+    @Secured("ROLE_ADMIN")
     public  ResponseEntity <Void> assignRole(
             @PathVariable UUID userId,
             @RequestBody AssignRoleRequest request){
@@ -81,5 +84,11 @@ public class UserController {
             @PathVariable UUID userId){
 
         return ResponseEntity.ok(userService.getUser(userId));
+    }
+
+    @GetMapping
+    @PreAuthorize("hasRole('ADMIN')")
+    public ResponseEntity<List<UserResponse>> getAllUsers() {
+        return ResponseEntity.ok(userService.getAllUsers());
     }
 }

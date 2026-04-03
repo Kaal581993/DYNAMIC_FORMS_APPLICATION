@@ -14,4 +14,6 @@ public class SubmitFormRequest {
     private String formId;
 
     private Map<String, Object> data;
+
+    private String recipientEmail;
 }

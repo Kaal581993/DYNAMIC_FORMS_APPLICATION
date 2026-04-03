@@ -5,7 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.List;
+import java.util.Map;
 
 @Data
 @AllArgsConstructor
@@ -15,15 +15,9 @@ public class FieldDTO {
     private String id;
 
     private String name;
-
-    private String description;
-
-    private Integer version;
-
-    private Boolean active;
-
+    private String label;
+    private String type;
     private boolean required;
-
-    private List<FieldDTO> fields;
+    private Map<String, Object> config;
 
 }

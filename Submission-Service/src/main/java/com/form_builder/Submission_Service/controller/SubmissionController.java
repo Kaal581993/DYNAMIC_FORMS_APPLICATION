@@ -7,6 +7,7 @@ import com.form_builder.Submission_Service.model.Submission;
 import com.form_builder.Submission_Service.service.SubmissionService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
@@ -18,6 +19,7 @@ public class SubmissionController {
     private final SubmissionService submissionService;
 
     @PostMapping
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<Submission> submitForm(
             @RequestBody SubmitFormRequest request,
             @RequestHeader("X-USER-ID") String userId
@@ -30,6 +32,7 @@ public class SubmissionController {
     }
 
     @GetMapping("/form/{formId}")
+    @PreAuthorize("isAuthenticated()")
     public ResponseEntity<List<SubmissionResponse>> getSubmissions(
             @PathVariable String formId) {
 

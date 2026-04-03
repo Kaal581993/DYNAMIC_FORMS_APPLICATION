@@ -36,4 +36,6 @@ public class AddFieldRequest {
     private Boolean active;
 
     private LocalDateTime createdAt;
+
+    private List<FieldRolePermissionRequest> rolePermissions;
 }

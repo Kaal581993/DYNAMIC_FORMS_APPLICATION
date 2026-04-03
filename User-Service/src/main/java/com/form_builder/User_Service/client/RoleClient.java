@@ -13,4 +13,7 @@ public interface RoleClient {
 
     @GetMapping("/api/roles/{roleId}")
     RoleDTO getRole(@PathVariable UUID roleId);
+
+    @GetMapping("/api/roles/name/{roleName}")
+    RoleDTO getRoleByName(@PathVariable String roleName);
 }

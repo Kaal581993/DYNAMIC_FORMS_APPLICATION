@@ -16,6 +16,7 @@ public class FormDTO {
     private String name;
 
     private String description;
+    private String ownerEmail;
 
     private Integer version;
 

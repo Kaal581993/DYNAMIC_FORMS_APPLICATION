@@ -1,5 +1,5 @@
 server:
-  port: 8080
+  port: 8762
 
 eureka:
   client:
@@ -9,6 +9,8 @@ eureka:
 spring:
   cloud:
     gateway:
+      default-filters:
+        - DedupeResponseHeader=Access-Control-Allow-Origin Access-Control-Allow-Credentials
       routes:
         # Auth Server - OAuth2 & Authentication
         - id: auth-server
@@ -22,39 +24,33 @@ spring:
         - id: user-service
           uri: lb://USER-SERVICE
           predicates:
-            - Path=/api/users/**,/users/**
-          filters:
-            - StripPrefix=1
+            - Path=/api/users/**
 
         # Form Service
         - id: form-service
           uri: lb://FORM-SERVICE
           predicates:
-            - Path=/api/forms/**,/forms/**
-          filters:
-            - StripPrefix=1
+            - Path=/api/forms/**
 
         # Submission Service
         - id: submission-service
           uri: lb://SUBMISSION-SERVICE
           predicates:
-            - Path=/api/submissions/**,/submissions/**
-          filters:
-            - StripPrefix=1
+            - Path=/api/submission/**
 
         # Role Service
         - id: role-service
           uri: lb://ROLE-SERVICE
           predicates:
-            - Path=/api/roles/**,/roles/**
-          filters:
-            - StripPrefix=1
+            - Path=/api/roles/**
 
       # Global CORS configuration
       globalcors:
         corsConfigurations:
           '[/**]':
-            allowedOrigins: "*"
+            allowedOrigins:
+              - "http://localhost:5173"
+              - "http://localhost:3000"
             allowedMethods:
               - GET
               - POST
@@ -62,6 +58,7 @@ spring:
               - DELETE
               - OPTIONS
             allowedHeaders: "*"
+            allowCredentials: true
 
   # JWT Configuration for Gateway
   security:

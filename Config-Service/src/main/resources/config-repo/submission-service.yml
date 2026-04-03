@@ -5,6 +5,18 @@ spring:
   application:
     name: submission-service
 
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail:
+        smtp:
+          auth: ${MAIL_SMTP_AUTH:true}
+          starttls:
+            enable: ${MAIL_SMTP_STARTTLS:true}
+
   # PostgreSQL Database Configuration
   datasource:
     url: jdbc:postgresql://localhost:5432/submission_db
@@ -40,7 +52,8 @@ eureka:
     registry-fetch-interval-seconds: 10
     instance-info-replication-interval-seconds: 10
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
+    hostname: localhost
     instance-id: ${spring.application.name}:${server.port}
     lease-renewal-interval-in-seconds: 10
 
@@ -72,6 +85,15 @@ management:
   endpoint:
     health:
       show-details: always
+
+# JWT Configuration
+jwt:
+  secret: mySecretKeyForJwtTokenGeneration12345678901234567890
+
+# Email settings
+app:
+  mail:
+    from: ${MAIL_FROM:}
 
 # Logging
 logging:

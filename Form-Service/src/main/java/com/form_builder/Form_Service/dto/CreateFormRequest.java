@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 
 @Data
@@ -18,5 +19,8 @@ public class CreateFormRequest {
     @NotBlank
     private String name;
     private String description;
+    private String ownerEmail;
     private LocalDateTime createdAt;
+
+    private List<FormRolePermissionRequest> rolePermissions;
 }

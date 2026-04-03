@@ -21,6 +21,7 @@ public class Form {
     private String id;
     private String name;
     private String description;
+    private String ownerEmail;
 
     private List<FieldDefinition> fields;
 

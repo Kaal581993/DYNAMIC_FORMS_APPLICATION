@@ -17,18 +17,6 @@ spring:
       idle-timeout: 600000
       max-lifetime: 1800000
 
-  jpa:
-    url: jdbc:postgresql://localhost:5432/user_db
-    username: postgres
-    password: PostGres123
-    driver-class-name: org.postgresql.Driver
-    hikari:
-      maximum-pool-size: 10
-      minimum-idle: 5
-      connection-timeout: 30000
-      idle-timeout: 600000
-      max-lifetime: 1800000
-
   # JPA/Hibernate Configuration
   jpa:
     hibernate:
@@ -51,7 +39,8 @@ eureka:
     registry-fetch-interval-seconds: 10
     instance-info-replication-interval-seconds: 10
   instance:
-    prefer-ip-address: true
+    prefer-ip-address: false
+    hostname: localhost
     instance-id: ${spring.application.name}:${server.port}
     lease-renewal-interval-in-seconds: 10
 
@@ -75,6 +64,10 @@ management:
   endpoint:
     health:
       show-details: always
+
+# JWT Configuration
+jwt:
+  secret: mySecretKeyForJwtTokenGeneration12345678901234567890
 
 # Logging
 logging:
